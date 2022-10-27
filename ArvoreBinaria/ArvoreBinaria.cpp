@@ -121,8 +121,23 @@ NO* criaNO(int valor)
 
 NO* insereArvore(NO* no, int valor)
 {
+	if (no == NULL) {
+		no = criaNO(valor);
+		return no;
+	}
+	else {
+		if (valor < no->valor) {
+			no->esq = insereArvore(no->esq, valor);
+		}
+		else {
+			no->dir = insereArvore(no->dir, valor);
+		}
+		return no;
+	}
 	
+
 }
+
 
 int elementosArvore(NO* no)
 {
@@ -133,7 +148,23 @@ int elementosArvore(NO* no)
 	return 1 + elementosArvore(no->esq) + elementosArvore(no->dir);
 }
 
+
 void exibirElementosArvore(NO* no)
 {
-	
+	if (no == NULL) {
+		cout << "Arvore vazia..." << endl;
+		return;
+	}
+
+	if (no->esq != NULL) {
+		cout << no->valor << endl;
+		exibirElementosArvore(no->esq);
+
+	}
+
+	if (no->dir != NULL) {
+		cout << no->valor << endl;
+		exibirElementosArvore(no->dir);
+
+	}
 }
